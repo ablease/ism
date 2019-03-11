@@ -1,0 +1,30 @@
+require 'net/http'
+
+# uri = URI('https://34.76.141.149/apis/osbapi.ism.io/v1alpha1/namespaces/default/brokers?limit=500')
+#
+# req = Net::HTTP::Get.new(uri)
+# req['Authorization'] = 'Bearer: ya29.GlvJBkl1_MulubdgMornEyjTLXZ15IoYtUAn-KIXr5p47vM7zIRzbysXWvMJL8TMYrLVuC2sYkWcU7IdNIqnkwbKSeGUTvr7SJ-bv_TXY1lo6WgRriciwa6DMtsx'
+#
+# puts uri.hostname 
+# puts uri.port
+#
+# res = Net::HTTP.start(uri.hostname, uri.port) do |http|
+#   http.request.use_ssl = true
+#   http.request(req)
+# end
+#
+# puts res.body
+uri = URI.parse('https://api.thorn-forger.sapi.cf-app.com/v2/info')
+
+puts uri.host
+puts uri.port
+
+headers = {
+	'Authorization' => 'Bearer eyJhbGciOiJSUzI1NiIsImprdSI6Imh0dHBzOi8vdWFhLnRob3JuLWZvcmdlci5zYXBpLmNmLWFwcC5jb20vdG9rZW5fa2V5cyIsImtpZCI6ImtleS0xIiwidHlwIjoiSldUIn0.eyJqdGkiOiI1MGEzMWIxNjI3ZDI0NGNhODFlMDY1YzcwNGU3ODI3NiIsInN1YiI6IjA2NDQ4YTkyLWFkODYtNDRiNC05ZmUwLTNiZTVlNzk0NjlmNCIsInNjb3BlIjpbIm9wZW5pZCIsInJvdXRpbmcucm91dGVyX2dyb3Vwcy53cml0ZSIsInNjaW0ucmVhZCIsImNsb3VkX2NvbnRyb2xsZXIuYWRtaW4iLCJ1YWEudXNlciIsInJvdXRpbmcucm91dGVyX2dyb3Vwcy5yZWFkIiwiY2xvdWRfY29udHJvbGxlci5yZWFkIiwicGFzc3dvcmQud3JpdGUiLCJjbG91ZF9jb250cm9sbGVyLndyaXRlIiwibmV0d29yay5hZG1pbiIsImRvcHBsZXIuZmlyZWhvc2UiLCJzY2ltLndyaXRlIl0sImNsaWVudF9pZCI6ImNmIiwiY2lkIjoiY2YiLCJhenAiOiJjZiIsImdyYW50X3R5cGUiOiJwYXNzd29yZCIsInVzZXJfaWQiOiIwNjQ0OGE5Mi1hZDg2LTQ0YjQtOWZlMC0zYmU1ZTc5NDY5ZjQiLCJvcmlnaW4iOiJ1YWEiLCJ1c2VyX25hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW4iLCJhdXRoX3RpbWUiOjE1NTIzMjEyODAsInJldl9zaWciOiIzMWY3M2FmYyIsImlhdCI6MTU1MjMyMTI4MCwiZXhwIjoxNTUyMzIxODgwLCJpc3MiOiJodHRwczovL3VhYS50aG9ybi1mb3JnZXIuc2FwaS5jZi1hcHAuY29tL29hdXRoL3Rva2VuIiwiemlkIjoidWFhIiwiYXVkIjpbInNjaW0iLCJjbG91ZF9jb250cm9sbGVyIiwicGFzc3dvcmQiLCJjZiIsInVhYSIsIm9wZW5pZCIsImRvcHBsZXIiLCJyb3V0aW5nLnJvdXRlcl9ncm91cHMiLCJuZXR3b3JrIl19.T9LhSXk8epMwq7d887Xe-97DraqvJO_IRJ6lNPK5Fk1n8nKrRKIwxunBkrNf4Y-G5lDEFR_oXP51Wx6ptBPyYbQaWQfzze4W9vJmoEcjr-k2cmqj9Jaa7F6-d6Qf_vIbLTfJtOVfTVH2WxY8GRVvG0AnK8uLneHV-E_IPcqu1Ah0ygegIoPFhzburZpuzuQxiMRnERRk5Luh_dCapiPeKsZnLkraA9zsHWlR7htYFTF3ZNQBnscSLLHO-UGtu0wCtLImhK72C7TlwEKocLFMwKAzsjsLBlOx0PR4SEZEsJIeZWk9MBrk6LStf5CKY5UyJcpSMwE_pne5bDEhLZBbtQ'
+}
+
+http = Net::HTTP.new(uri.host, uri.port)
+response = http.get(uri.path, headers)
+
+puts response
+

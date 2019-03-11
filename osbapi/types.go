@@ -20,3 +20,9 @@ type Plan struct {
 	Name      string
 	ServiceID string
 }
+
+type Platform struct {
+	ID   string
+	Name string
+	URL  string
+}

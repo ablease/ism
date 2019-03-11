@@ -35,6 +35,7 @@ func main() {
 	brokerRepository := &kube.Broker{KubeClient: kubeClient, RegistrationTimeout: timeout}
 	serviceRepository := &kube.Service{KubeClient: kubeClient}
 	planRepository := &kube.Plan{KubeClient: kubeClient}
+	platformRepository := &kube.Platform{KubeClient: kubeClient, RegistrationTimeout: timeout}
 
 	brokersActor := &actors.BrokersActor{
 		Repository: brokerRepository,
@@ -44,6 +45,9 @@ func main() {
 	}
 	plansActor := &actors.PlansActor{
 		Repository: planRepository,
+	}
+	platformsActor := &actors.PlatformsActor{
+		Repository: platformRepository,
 	}
 
 	serviceListUsecase := &usecases.ServiceListUsecase{
@@ -61,6 +65,16 @@ func main() {
 			BrokerListCommand: commands.BrokerListCommand{
 				UI:            UI,
 				BrokerFetcher: brokersActor,
+			},
+		},
+		PlatformCommand: commands.PlatformCommand{
+			PlatformRegisterCommand: commands.PlatformRegisterCommand{
+				UI:                UI,
+				PlatformRegistrar: platformsActor,
+			},
+			PlatformListCommand: commands.PlatformListCommand{
+				UI:              UI,
+				PlatformFetcher: platformsActor,
 			},
 		},
 		ServiceCommand: commands.ServiceCommand{
